@@ -8,8 +8,7 @@ module.exports = override(
         libraryDirectory: 'es',
         style: 'css',
     }),
-   addWebpackAlias({
-       '@':path.resolve(__dirname,'/src')
-   })
-
+    addWebpackAlias({
+        '@': path.resolve(__dirname, './src')
+    })
 )
