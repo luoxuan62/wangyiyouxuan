@@ -6,6 +6,7 @@
     left: 0;
     background: #fff;
     border-top:1px solid #ccc;
+    z-index: 5;
 }
 
 #footer>ul{
@@ -22,11 +23,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size:20px;
+    font-size:0.2rem;
 }
 
 #footer>ul>li>a>i{
-    font-size:34px;
+    font-size:0.34rem;
 }
 #footer>ul>li>.active{
     color: #c33;
