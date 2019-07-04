@@ -5,7 +5,7 @@ import{
     Sort,
     Topic,
     NotFound
-} from "../views"
+} from "@/views"
 
 export const pageRoute = [
     {

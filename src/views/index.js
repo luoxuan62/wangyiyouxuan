@@ -1,5 +1,5 @@
 import Loadable from "react-loadable"
-import Loading from "../common/loading"
+import Loading from "@/common/loading"
 //路由懒加载
 const Home=Loadable({
     loader:()=>import("./home"),
