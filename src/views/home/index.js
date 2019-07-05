@@ -2,25 +2,48 @@ import React from "react"
 import "./index.css"
 import { Carousel} from 'antd';
 import "@/static/iconfont/iconfont.css"
-import img1 from '@/static/images/home1.jpg'
-import img2 from '@/static/images/home2.jpg'
-import img3 from '@/static/images/home3.jpg'
-import img4 from '@/static/images/home4.jpg'
-import img5 from '@/static/images/home5.jpg'
-import img6 from '@/static/images/home6.jpg'
 import img8 from '@/static/images/home8.png'
 import img9 from '@/static/images/home9.png'
 import img11 from '@/static/images/home11.png'
-import bg1 from '@/static/images/bg1.png'
-import hot1 from '@/static/images/hot1.png'
-import hot2 from '@/static/images/hot2.png'
 import recomd1 from '@/static/images/recomd1.png'
 import recomd2 from '@/static/images/recomd2.png'
 import list1 from '@/static/images/list1.png'
 import slider1 from '@/static/images/slider1.jpg'
 import slider2 from '@/static/images/slider2.png'
-export default class Home extends React.Component{
+
+import store from "@/store"
+import {connect} from "react-redux"
+import {
+    bannerlistAsync,
+    catelistAsync,
+    activitylistAsync,
+    tagListAsync,
+    catehotsellAsync,
+    popularlistAsync,
+    flashsaleAsync,
+    newitemlistAsync,
+    shoppingguideAsync,
+    topcatelistAsync,
+    temlistAsync
+} from "@/action/home"
+class Home extends React.Component{
+    componentDidMount(){
+        store.dispatch(bannerlistAsync())
+        store.dispatch(catelistAsync())
+        store.dispatch(activitylistAsync())
+        store.dispatch(tagListAsync())
+        store.dispatch(catehotsellAsync())
+        store.dispatch(popularlistAsync())
+        store.dispatch(flashsaleAsync())
+        store.dispatch(newitemlistAsync())
+        store.dispatch(shoppingguideAsync())
+        store.dispatch(topcatelistAsync())
+        store.dispatch(temlistAsync())
+        
+    }
     render(){
+        let {bannerlist,cate,activity,tag,hot,popular,flash,newitem,shopping,topcate,tem}=this.props
+        console.log(popular)
         return(
             <div id="home">
               <div className="header">
@@ -40,31 +63,13 @@ export default class Home extends React.Component{
               <div className="main">
                   {/* 轮播图 */}
                 <Carousel autoplay>
-                    <div className="home_auto">
-                        <img src={img1}/>
-                    </div>
-                    <div>
-                        <img src={img2}/>
-                    </div>
-                    <div>
-                        <img src={img3}/>
-                    </div>
-                    <div>
-                        <img src={img4}/>
-                    </div>
-                    <div>
-                        <img src={img5}/>
-                    </div>
-                    <div>
-                        <img src={img6}/>
-                    </div>
-                    <div>
-                        <img src={img5}/>
-                    </div>
-                    <div>
-                        <img src={img6}/>
-                    </div>
-
+                    {
+                        bannerlist.map((item)=>(
+                            <div key={item.id}>
+                                <img src={item.picUrl}/>
+                            </div>
+                        ))
+                    }
                 </Carousel>
                 <div className="home_tip">
                     <p><i className="iconfont">&#xe69d;</i><span>网易自营品牌</span></p> 
@@ -72,47 +77,16 @@ export default class Home extends React.Component{
                     <p><i className="iconfont">&#xe632;</i><span>48小时快速退款</span></p> 
                 </div>
                 <ul className="home_sort">
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
-                    <li>
-                        <img src={img9}/>
-                        <span>新品首发</span>
-                    </li>
+                    {
+                        cate.map((item,index)=>(
+                            <li key={index}>
+                                <img src={item.picUrl}/>
+                                <span>{item.text}</span>
+                            </li>
+                        ))
+                    }
                 </ul>
+                {/* 没有数据未渲染 */}
                 <div className="welfare">
                     <h2><span>一</span>新人专享礼<span>一</span></h2>
                     <div className="welfare_con">
@@ -144,69 +118,27 @@ export default class Home extends React.Component{
                         <a href="#">更多<i className="iconfont">&#xe607;</i></a>
                     </h2>
                     <ul className="provider_con">
-                        <li className="provider_bg" style={{backgroundImage:`url(${bg1})`}}>
-                            <p>海外制造商</p>
-                            <span>9.9元起<i>上新</i></span>
-                        </li>
-                        <li className="provider_bg" style={{backgroundImage:`url(${bg1})`}}>
-                            <p>海外制造商</p>
-                            <span>29.9元起</span>
-                        </li>
-                        <li className="provider_bg" style={{backgroundImage:`url(${bg1})`}}>
-                            <p>海外制造商</p>
-                            <span>29.9元起</span>
-                        </li>
-                        <li className="provider_bg" style={{backgroundImage:`url(${bg1})`}}>
-                            <p>海外制造商</p>
-                            <span>29.9元起</span>
-                        </li>
+                        {
+                            tag.map(item=>(
+                                <li className="provider_bg" key={item.id} style={{backgroundImage:`url(${item.picUrl})`}}>
+                                    <p>{item.name}</p>
+                                    <span>{item.floorPrice}元起<i>上新</i></span>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
                 <div className="hot leri">
                     <h2 className="hea">类目热销榜</h2>
-                    <div className="hot_t">
-                        <p>
-                            <span>热销榜</span>
-                            <img src={hot1}/>
-                        </p>
-                        <p>
-                            <span>热销榜</span>
-                            <img src={hot1}/>
-                        </p>
-                    </div>
                     <ul>
-                        <li>
-                            <span>居家生活榜</span>
-                            <img src={hot2}/>
-                        </li>
-                        <li>
-                            <span>居家生活榜</span>
-                            <img src={hot2}/>
-                        </li>
-                        <li>
-                            <span>热销榜</span>
-                            <img src={hot2}/>
-                        </li>
-                        <li>
-                            <span>热销榜</span>
-                            <img src={hot2}/>
-                        </li>
-                        <li>
-                            <span>热销榜</span>
-                            <img src={hot2}/>
-                        </li>
-                        <li>
-                            <span>热销榜</span>
-                            <img src={hot2}/>
-                        </li>
-                        <li>
-                            <span>热销榜</span>
-                            <img src={hot2}/>
-                        </li>
-                        <li>
-                            <span>热销榜</span>
-                            <img src={hot2}/>
-                        </li>
+                        {
+                            hot.map(item=>(
+                                <li key={item.picUrl}>
+                                    <p>{item.categoryName}</p>
+                                    <img src={item.picUrl}/>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
                 <div className="recommond leri">
@@ -214,32 +146,22 @@ export default class Home extends React.Component{
                         <span>人气推荐</span>
                         <a href="#">更多<i className="iconfont">&#xe607;</i></a>
                     </h2>
-                    <div className="recommond_m">
-                        <img src={recomd1}/>
-                        <div>
-                            <span>好货内部价</span>
-                            <p>提花拉丝三件套，可折叠可以</p>
-                            <i>提花拉丝三件套，可折叠可以</i>
-                            <em>￥159</em>
-                        </div>
-                    </div>
                     <ul>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套  可折叠<i>￥159</i></p>
-                            <span>特价</span>
-                            <span>特价</span>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套<i>￥159</i></p>
-                            <span>加价购</span>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套<i>￥159</i></p>
-                            <span>加价购</span>
-                        </li>
+                        {
+                            popular.map(item=>(
+                                <li key={item.id}>
+                                    <img src={item.listPicUrl}/>
+                                    <div>
+                                        {/* <span>好货内部价</span> */}
+                                        <p>{item.name}</p>
+                                        {/* <i>{item.simpleDesc}</i> */}
+                                        <p><i>￥{item.counterPrice}</i></p>
+                                        {/* <span>{item.newItemFlag}</span> */}
+                                    </div>
+                                </li>
+                            ))
+                        }
+
                     </ul>
                    
                 </div>
@@ -249,36 +171,15 @@ export default class Home extends React.Component{
                         <a href="#">更多<i className="iconfont">&#xe607;</i></a>
                     </h2>
                     <ul>
-                        <li>
-                            <img src={recomd2}/>
-                            <span>￥143</span>
-                            <i>￥100</i>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <span>￥143</span>
-                            <i>￥100</i>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <span>￥143</span>
-                            <i>￥100</i>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <span>￥143</span>
-                            <i>￥100</i>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <span>￥143</span>
-                            <i>￥100</i>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <span>￥143</span>
-                            <i>￥100</i>
-                        </li>
+                        {
+                            flash.map(item=>(
+                                <li key={item.itemId}>
+                                    <img src={item.picUrl}/>
+                                    <span>￥{item.activityPrice}</span>
+                                    <i>￥{item.originPrice}</i>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
                 <div className="newProduct leri">
@@ -287,113 +188,51 @@ export default class Home extends React.Component{
                         <a href="#">更多<i className="iconfont">&#xe607;</i></a>
                     </h2>
                     <ul>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套 可折叠<i>￥159</i></p>
-                            <span>加价购</span>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套 可折叠<i>￥159</i></p>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套 可折叠<i>￥159</i></p>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套 可折叠<i>￥159</i></p>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套 可折叠<i>￥159</i></p>
-                        </li>
-                        <li>
-                            <img src={recomd2}/>
-                            <p>提花拉丝三件套 可折叠<i>￥159</i></p>
-                        </li>
+                        {
+                            newitem.map(item=>(
+                                <li key={item.id}>
+                                    <img src={item.listPicUrl}/>
+                                    <p>{item.name}<i>￥{item.counterPrice}</i></p>
+                                    <span>加价购</span>
+                                </li>
+                            ))
+                        }
+                       
                     </ul>
                 </div>
                 <div className="list leri">
-                    <div>
-                        <h2>9.9超值一口价</h2>
-                        <span>花点小钱，过得舒服</span>
-                        <p>
-                            <img src={list1}/>
-                            <img src={list1}/>
-                        </p>
-                    </div>
-                    <div>
-                        <h2>9.9超值一口价</h2>
-                        <span>花点小钱，过得舒服</span>
-                        <p>
-                            <img src={list1}/>
-                            <img src={list1}/>
-                        </p>
-                    </div>
-                    <div>
-                        <h2>9.9超值一口价</h2>
-                        <span>花点小钱，过得舒服</span>
-                        <p>
-                            <img src={list1}/>
-                            <img src={list1}/>
-                        </p>
-                    </div>
-                    <div>
-                        <h2>9.9超值一口价</h2>
-                        <span>花点小钱，过得舒服</span>
-                        <p>
-                            <img src={list1}/>
-                            <img src={list1}/>
-                        </p>
-                    </div>
+                    {
+                        shopping.map((item,index)=>(
+                            <div key={index}>
+                                <h2>{item.styleItem.title}</h2>
+                                <span>{item.styleItem.desc}</span>
+                                <p>
+                                    <img src={item.styleItem.picUrlList[0]}/>
+                                    <img src={item.styleItem.picUrlList[1]}/>
+                                </p>
+                            </div>
+                        ))
+                    }
                 </div>
-                <div className="silder">
-                    <img src={slider1}/>
-                    <ul>
-                        <li>
-                            <img src={slider2}/>
-                            <p>提花拉丝三件套 可折叠<br/><i>￥159</i>></p>
-                        </li>
-                        <li>
-                            <img src={slider2}/>
-                            <p>提花拉丝三件套 可折叠<br/><i>￥159</i></p>
-                            <span>250直减券</span>
-                        </li>
-                        <li>
-                            <img src={slider2}/>
-                            <p>提花拉丝三件套 可折叠<br/><i>￥159</i></p>
-                        </li>
-                        <li>
-                            <img src={slider2}/>
-                            <p>提花拉丝三件套 可折叠<br/><i>￥159</i></p>
-                        </li>
-                    </ul>
-                </div>
-                <div className="silder">
-                    <img src={slider1}/>
-                    <ul>
-                        <li>
-                            <img src={slider2}/>
-                            <p>提花拉丝三件套 可折叠<br/><i>￥159</i><em>￥200</em></p>
-                            <span>奥莱特惠</span>
-
-                        </li>
-                        <li>
-                            <img src={slider2}/>
-                            <p>提花拉丝三件套 可折叠<br/><i>￥159</i></p>
-                        </li>
-                        <li>
-                            <img src={slider2}/>
-                            <p>提花拉丝三件套 可折叠<br/><i>￥159</i><em>￥200</em></p>
-                            <span>奥莱特惠</span>
-                        </li>
-                        <li>
-                            <img src={slider2}/>
-                            <p>提花拉丝三件套 可折叠<br/><i>￥159</i></p>
-                        </li>
-                    </ul>
-                </div>
+                {
+                   topcate.map(item=>(
+                    <div className="silder" key={item.titlePicUrl}>
+                        <img src={item.titlePicUrl}/>
+                        <ul>
+                            {
+                                item.itemList.map(tem=>(
+                                    <li key={tem.id}>
+                                        <img src={tem.listPicUrl}/>
+                                        <p>{tem.name}<br/><i>￥{tem.counterPrice}</i></p>
+                                    </li> 
+                                ))
+                            }
+                        </ul>
+                    </div>
+                   )) 
+                }
+               
+               
                 <div className="foot">
                     <div>
                         <a href="#">下载App</a>
@@ -405,5 +244,23 @@ export default class Home extends React.Component{
               </div>
             </div>
         )
+      
     }
 }
+const mapStateToProps = (state)=>({
+    bannerlist:state.home.bannerlist,
+    cate:state.home.cate,
+    activity:state.home.activity,
+    tag:state.home.tag,
+    hot:state.home.hot,
+    popular:state.home.popular,
+    flash:state.home.flash,
+    newitem:state.home.newitem,
+    shopping:state.home.shopping,
+    topcate:state.home.topcate,
+    tem:state.home.tem
+})
+const mapDispatchToProps = (dispatch)=>({
+    
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

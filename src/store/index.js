@@ -8,3 +8,4 @@ export default createStore(
   combineReducers(reducers),
   composeEnhancers(applyMiddleware(thunk))
 )
+
