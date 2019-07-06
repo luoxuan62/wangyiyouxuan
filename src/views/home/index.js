@@ -3,14 +3,7 @@ import "./index.css"
 import { Carousel} from 'antd';
 import "@/static/iconfont/iconfont.css"
 import img8 from '@/static/images/home8.png'
-import img9 from '@/static/images/home9.png'
 import img11 from '@/static/images/home11.png'
-import recomd1 from '@/static/images/recomd1.png'
-import recomd2 from '@/static/images/recomd2.png'
-import list1 from '@/static/images/list1.png'
-import slider1 from '@/static/images/slider1.jpg'
-import slider2 from '@/static/images/slider2.png'
-
 import store from "@/store"
 import {connect} from "react-redux"
 import {
@@ -27,29 +20,15 @@ import {
     temlistAsync
 } from "@/action/home"
 class Home extends React.Component{
-    componentDidMount(){
-        store.dispatch(bannerlistAsync())
-        store.dispatch(catelistAsync())
-        store.dispatch(activitylistAsync())
-        store.dispatch(tagListAsync())
-        store.dispatch(catehotsellAsync())
-        store.dispatch(popularlistAsync())
-        store.dispatch(flashsaleAsync())
-        store.dispatch(newitemlistAsync())
-        store.dispatch(shoppingguideAsync())
-        store.dispatch(topcatelistAsync())
-        store.dispatch(temlistAsync())
-        
-    }
     render(){
         let {bannerlist,cate,activity,tag,hot,popular,flash,newitem,shopping,topcate,tem}=this.props
-        console.log(popular)
+        // console.log(popular)
         return(
             <div id="home">
               <div className="header">
                     <div className="header-search">
                         <a href="#">网易严选</a>
-                        <input results="s" type="search" size="20px" placeholder="搜索商品，共22231款好物"/>
+                        <input results="s" typ="search" size="20px" placeholder="搜索商品，共22231款好物" onClick={this.searchClick.bind(this)}/>
                         <span>登录</span>
                     </div> 
                     <ul>
@@ -246,6 +225,23 @@ class Home extends React.Component{
         )
       
     }
+    searchClick(){
+        this.props.history.push("/search")
+    }
+    componentDidMount(){
+        store.dispatch(bannerlistAsync())
+        store.dispatch(catelistAsync())
+        store.dispatch(activitylistAsync())
+        store.dispatch(tagListAsync())
+        store.dispatch(catehotsellAsync())
+        store.dispatch(popularlistAsync())
+        store.dispatch(flashsaleAsync())
+        store.dispatch(newitemlistAsync())
+        store.dispatch(shoppingguideAsync())
+        store.dispatch(topcatelistAsync())
+        store.dispatch(temlistAsync())
+        
+    }
 }
 const mapStateToProps = (state)=>({
     bannerlist:state.home.bannerlist,
@@ -261,6 +257,6 @@ const mapStateToProps = (state)=>({
     tem:state.home.tem
 })
 const mapDispatchToProps = (dispatch)=>({
-    
+   
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Home)

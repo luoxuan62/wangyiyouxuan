@@ -4,7 +4,8 @@ import{
     Cart,
     Sort,
     Topic,
-    NotFound
+    NotFound,
+    Search
 } from "@/views"
 
 export const pageRoute = [
@@ -31,5 +32,9 @@ export const pageRoute = [
     {
         pathname:"/404",
         component:NotFound
+    },
+    {
+        pathname:"/search",
+        component:Search
     }
 ]

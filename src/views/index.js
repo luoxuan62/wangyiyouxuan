@@ -25,9 +25,10 @@ const NotFound=Loadable({
     loader:()=>import("./NotFound"),
     loading:Loading
 })
-
-
-
+const Search=Loadable({
+    loader:()=>import("./search"),
+    loading:Loading
+})
 
 export{
     Home,
@@ -35,5 +36,6 @@ export{
     Cart,
     Sort,
     Topic,
-    NotFound
+    NotFound,
+    Search
 }
