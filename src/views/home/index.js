@@ -255,6 +255,7 @@ const mapStateToProps = (state)=>({
     shopping:state.home.shopping,
     topcate:state.home.topcate,
     tem:state.home.tem
+    
 })
 const mapDispatchToProps = (dispatch)=>({
    
