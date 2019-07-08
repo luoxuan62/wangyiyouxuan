@@ -28,7 +28,7 @@ export default class Footer extends React.Component{
                     </li>
                     <li>
                         <NavLink to="/cart">
-                            <i className="iconfont">&#xe600;</i>
+                            <i className="iconfont">&#xe648;</i>
                             <span>购物车</span>
                         </NavLink>
                     </li>

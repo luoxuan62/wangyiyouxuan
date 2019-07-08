@@ -1,5 +1,5 @@
 import Loadable from "react-loadable"
-import Loading from "../common/loading"
+import Loading from "@/common/loading"
 //路由懒加载
 const Home=Loadable({
     loader:()=>import("./home"),
@@ -25,9 +25,10 @@ const NotFound=Loadable({
     loader:()=>import("./NotFound"),
     loading:Loading
 })
-
-
-
+const Search=Loadable({
+    loader:()=>import("./search"),
+    loading:Loading
+})
 
 export{
     Home,
@@ -35,5 +36,6 @@ export{
     Cart,
     Sort,
     Topic,
-    NotFound
+    NotFound,
+    Search
 }
