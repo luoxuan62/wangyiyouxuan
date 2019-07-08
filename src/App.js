@@ -18,6 +18,8 @@ export default class App extends Component{
                     <Redirect from="/" exact to="/home"/>
                     <Redirect from="**" to="/404"/>
                 </Switch>
+
+                
                 <Footer/>
             </Router>
         )

@@ -7,6 +7,8 @@ import{
     NotFound
 } from "../views"
 
+
+
 export const pageRoute = [
     {
         pathname:"/home",
@@ -32,4 +34,5 @@ export const pageRoute = [
         pathname:"/404",
         component:NotFound
     }
+    
 ]
